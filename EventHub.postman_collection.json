@@ -1,0 +1,677 @@
+{
+	"info": {
+		"_postman_id": "b3c38af6-e56f-4251-8230-ee70c72c3321",
+		"name": "EventHub",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30997596"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"Admin 1\",\n    \"password\": \"EventHub Admin 1\",\n    \"contactInfo\": {\n        \"email\": \"admin.eventhub@gmail.com\",\n        \"phone\": \"9876543210\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"token\", pm.response.json().access_token)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"Admin 1\",\n    \"password\": \"EventHub Admin 1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "List Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Participants",
+			"item": [
+				{
+					"name": "List Participants",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/participants",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"participants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Participants on email",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/participants/search?email=nayansetty7@gmail.com",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"participants",
+								"search"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "nayansetty7@gmail.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Participant by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"participantID\", pm.response.json().ParticipantID)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/participants/:participantID",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"participants",
+								":participantID"
+							],
+							"variable": [
+								{
+									"key": "participantID",
+									"value": "{{participantID}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Participant by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Mohammed Arshad\",\n    \"email\": \"arshadbth12@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/participants/:participantID",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"participants",
+								":participantID"
+							],
+							"variable": [
+								{
+									"key": "participantID",
+									"value": "{{participantID}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Participant by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/participants/:participantID",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"participants",
+								":participantID"
+							],
+							"variable": [
+								{
+									"key": "participantID",
+									"value": "{{participantID}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register Participant",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"participantID\", pm.response.json().ParticipantID)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Arshad\",\n    \"email\": \"arshadbth12@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/participants",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"participants"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Events",
+			"item": [
+				{
+					"name": "List Events",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/events",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Events by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"eventID\", pm.response.json().EventID)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/events/:eventID",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"events",
+								":eventID"
+							],
+							"variable": [
+								{
+									"key": "eventID",
+									"value": "{{eventID}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Events by ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/events/:eventID",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"events",
+								":eventID"
+							],
+							"variable": [
+								{
+									"key": "eventID",
+									"value": "{{eventID}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create New Event",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"eventID\", pm.response.json().EventID)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Shoaib's wedding\",\n    \"description\": \"RimShaw wedding!!\",\n    \"dateTime\": \"29-07-2024\",\n    \"location\": \"HBR Layout near Elements mall\",\n    \"participants\": [\"525fe1fa-6a69-488d-b6a2-02528ea35f16\", \"05acbf15-75ff-40da-a577-fdc9af4142cd\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/events",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register Participant to Event",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\\"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"participant_id\": \"bf53a085-5fd0-4666-b9db-20c2454b8d2b\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/events/:eventID/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"events",
+								":eventID",
+								"register"
+							],
+							"variable": [
+								{
+									"key": "eventID",
+									"value": "{{eventID}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Feedback to Event",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\\"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"participant_id\": \"bf53a085-5fd0-4666-b9db-20c2454b8d2b\",\n    \"rating\": \"3\",\n    \"comment\": \"Did not keep Paneer at all. Extremely disappointed!! Will not attend marriage if paneer not kept\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/events/:eventID/feedback",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"events",
+								":eventID",
+								"feedback"
+							],
+							"variable": [
+								{
+									"key": "eventID",
+									"value": "{{eventID}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Events by ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Shoaib's engagement\",\n    \"description\": \"RimShaw's engagement. Pleaj everyone attend\",\n    \"dateTime\": \"21-07-2024\",\n    \"location\": \"HBR Layout near Elements mall\",\n    \"participants\": [\"Arshad\", \"Varun\", \"Nayan\", \"Mukund\", \"Sudeep\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/events/:eventID",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"events",
+								":eventID"
+							],
+							"variable": [
+								{
+									"key": "eventID",
+									"value": "{{eventID}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Analytics",
+			"item": [
+				{
+					"name": "Events Per Month",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/analytics/events-per-month",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"analytics",
+								"events-per-month"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Events Per Organizer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/analytics/events-per-organizer",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"analytics",
+								"events-per-organizer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Participants Attended",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/analytics/participants-events-attended",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"analytics",
+								"participants-events-attended"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Feedback Analysis",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/analytics/feedback-analysis",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"analytics",
+								"feedback-analysis"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": ""
+		},
+		{
+			"key": "base_url",
+			"value": "http://127.0.0.1:5000",
+			"type": "string"
+		},
+		{
+			"key": "eventID",
+			"value": ""
+		},
+		{
+			"key": "participantID",
+			"value": ""
+		}
+	]
+}

@@ -1,0 +1,7 @@
+Flask
+boto3
+flask-bcrypt
+flask-jwt-extended
+pandas
+pytest
+flask_request_validator
