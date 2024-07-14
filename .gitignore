@@ -1,0 +1,6 @@
+venv/
+__pycache__/
+*.pyc
+dynamodb_local/
+NOTES
+TODO
