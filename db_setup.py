@@ -51,7 +51,24 @@ def create_participant_table():
     except ClientError as e:
         print(e)
 
+def create_archived_event_table():
+    try:
+        table = dynamodb.create_table(
+            TableName='ArchivedEvent',
+            KeySchema=[
+                {'AttributeName': 'EventID', 'KeyType': 'HASH'}
+            ],
+            AttributeDefinitions=[
+                {'AttributeName': 'EventID', 'AttributeType': 'S'}
+            ],
+            ProvisionedThroughput={'ReadCapacityUnits': 5, 'WriteCapacityUnits': 5}
+        )
+        print("ArchivedEvent table created successfully.")
+    except ClientError as e:
+        print(e)
+
 if __name__ == '__main__':
     create_event_table()
     create_user_table()
     create_participant_table()
+    create_archived_event_table()
