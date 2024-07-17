@@ -5,3 +5,5 @@ flask-jwt-extended
 pandas
 pytest
 flask_request_validator
+pytest-mock
+moto

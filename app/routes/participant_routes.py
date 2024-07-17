@@ -4,20 +4,12 @@ from flask_jwt_extended import jwt_required
 from app.models.participant import Participant
 from app.utils.email_notifications import send_participant_registration_successful_notification
 import uuid
-from flask_request_validator import (
-    Param,
-    validate_params,
-    ValidRequest,
-    JSON,
-    GET,
-    PATH
-)
 
 @participant_bp.route('/', methods=['POST'])
 def create_participant():
     participant_id = str(uuid.uuid4())
     data = request.get_json()
-    if not data['name'] or not data['email']:
+    if not data.get('name') or not data.get('email'):
         return jsonify({'error': 'Invalid Request, name or email missing'}), 400
     participant = {
         'ParticipantID': participant_id,
