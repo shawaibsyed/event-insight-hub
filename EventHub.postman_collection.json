@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b3c38af6-e56f-4251-8230-ee70c72c3321",
+		"_postman_id": "602484f3-671c-464e-99ba-ea8dc5a0893d",
 		"name": "EventHub",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "30997596"
@@ -125,7 +125,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/participants/search?email=nayansetty7@gmail.com",
+							"raw": "{{base_url}}/participants/search?email=shawaibsyed@gmail.com",
 							"host": [
 								"{{base_url}}"
 							],
@@ -136,7 +136,7 @@
 							"query": [
 								{
 									"key": "email",
-									"value": "nayansetty7@gmail.com"
+									"value": "shawaibsyed@gmail.com"
 								}
 							]
 						}
@@ -279,7 +279,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Arshad\",\n    \"email\": \"arshadbth12@gmail.com\"\n}",
+							"raw": "{\n    \"name\": \"Shoaib\",\n    \"email\": \"shawaibsyed@gmail.com\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -321,6 +321,31 @@
 					"response": []
 				},
 				{
+					"name": "Get Event by Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/events/category/:category",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"events",
+								"category",
+								":category"
+							],
+							"variable": [
+								{
+									"key": "category",
+									"value": "scam"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Get Events by ID",
 					"event": [
 						{
@@ -351,6 +376,36 @@
 									"key": "eventID",
 									"value": "{{eventID}}"
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Archive Event",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/events/archive",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"events",
+								"archive"
 							]
 						}
 					},
@@ -399,7 +454,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Shoaib's wedding\",\n    \"description\": \"RimShaw wedding!!\",\n    \"dateTime\": \"29-07-2024\",\n    \"location\": \"HBR Layout near Elements mall\",\n    \"participants\": [\"525fe1fa-6a69-488d-b6a2-02528ea35f16\", \"05acbf15-75ff-40da-a577-fdc9af4142cd\"]\n}",
+							"raw": "{\n    \"name\": \"Nayan Interview\",\n    \"description\": \"Ecolabs Jay\",\n    \"dateTime\": \"2024-07-16T15:00:00Z\",\n    \"location\": \"Shoaib mane\",\n    \"participants\": [\"525fe1fa-6a69-488d-b6a2-02528ea35f16\", \"05acbf15-75ff-40da-a577-fdc9af4142cd\"],\n    \"category\": \"scam\",\n    \"recurrence\": \"weekly\",\n    \"end_recurrence\": \"2024-07-29T15:00:00Z\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -437,7 +492,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"participant_id\": \"bf53a085-5fd0-4666-b9db-20c2454b8d2b\"\n}",
+							"raw": "{\n    \"participant_id\": \"{{participantID}}\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -517,7 +572,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Shoaib's engagement\",\n    \"description\": \"RimShaw's engagement. Pleaj everyone attend\",\n    \"dateTime\": \"21-07-2024\",\n    \"location\": \"HBR Layout near Elements mall\",\n    \"participants\": [\"Arshad\", \"Varun\", \"Nayan\", \"Mukund\", \"Sudeep\"]\n}",
+							"raw": "{\n    \"description\": \"Ecolabs jai!!\",\n    \"dateTime\": \"2024-07-23T12:30:00Z\",\n    \"location\": \"Shoaib mane, HBR Layout\",\n    \"name\": \"Nayan Interview\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"

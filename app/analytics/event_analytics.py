@@ -4,7 +4,7 @@ from app.models.event import Event
 def get_events_data():
     events = Event.list()
     df = pd.DataFrame(events)
-    df['EventDateTime'] = pd.to_datetime(df['EventDateTime'])
+    df['EventDateTime'] = pd.to_datetime(df['EventDateTime'], format='ISO8601')
     return df
 
 def events_per_month():
