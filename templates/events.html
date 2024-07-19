@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Events{% endblock %}
+
+{% block content %}
+<h1>Events</h1>
+<ul>
+    <li><a href="{{ url_for('event_bp.create_event') }}">Create Event</a></li>
+    <li><a href="{{ url_for('event_bp.list_events') }}">List Events</a></li>
+    <li><a href="{{ url_for('event_bp.update_event') }}">Update Event</a></li>
+    <li><a href="{{ url_for('event_bp.delete_event') }}">Delete Event</a></li>
+</ul>
+{% endblock %}

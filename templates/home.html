@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="jumbotron text-center">
+    <h1>Welcome to Event Insight Hub</h1>
+    <p>Please <a href="{{ url_for('auth_bp.login') }}">login</a> or <a href="{{ url_for('auth_bp.register') }}">register</a> to continue.</p>
+</div>
+{% endblock %}

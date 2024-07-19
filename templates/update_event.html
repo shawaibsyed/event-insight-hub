@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Update Event</h2>
+<form method="post">
+    <div class="form-group">
+        <label for="name">Event Name:</label>
+        <input type="text" class="form-control" id="name" name="name" value="{{ event.EventName }}" required>
+    </div>
+    <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea class="form-control" id="description" name="description" required>{{ event.Description }}</textarea>
+    </div>
+    <div class="form-group">
+        <label for="datetime">Event Date & Time:</label>
+        <input type="datetime-local" class="form-control" id="datetime" name="datetime" value="{{ event.EventDateTime|format_datetime }}" required>
+    </div>
+    <div class="form-group">
+        <label for="location">Location:</label>
+        <input type="text" class="form-control" id="location" name="location" value="{{ event.EventLocation }}" required>
+    </div>
+    <div class="form-group">
+        <label for="category">Category:</label>
+        <input type="text" class="form-control" id="category" name="category" value="{{ event.Category }}" required>
+    </div>
+    <div class="form-group">
+        <label for="recurrence">Recurrence:</label>
+        <select class="form-control" id="recurrence" name="recurrence">
+            <option value="">None</option>
+            <option value="daily" {% if event.Recurrence == 'daily' %}selected{% endif %}>Daily</option>
+            <option value="weekly" {% if event.Recurrence == 'weekly' %}selected{% endif %}>Weekly</option>
+            <option value="monthly" {% if event.Recurrence == 'monthly' %}selected{% endif %}>Monthly</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="end_recurrence">End Recurrence:</label>
+        <input type="datetime-local" class="form-control" id="end_recurrence" name="end_recurrence" value="{{ event.EndRecurrence|format_datetime }}">
+    </div>
+    <div class="form-group">
+        <label for="participants">Participants (comma-separated IDs):</label>
+        <input type="text" class="form-control" id="participants" name="participants" value="{{ event.Participants }}">
+    </div>
+    <button type="submit" class="btn btn-primary">Update Event</button>
+</form>
+{% endblock %}

@@ -1,5 +1,4 @@
-
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template, session, g, request
 from flask_jwt_extended import JWTManager
 from app.routes.event_routes import event_bp
 from app.routes.user_routes import user_bp
@@ -9,6 +8,7 @@ from app.routes.analytics_routes import analytics_bp
 from config import Config
 from flask_request_validator.exceptions import InvalidRequestError
 import traceback
+import datetime
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -19,6 +19,19 @@ app.register_blueprint(user_bp, url_prefix='/users')
 app.register_blueprint(participant_bp, url_prefix='/participants')
 app.register_blueprint(auth_bp, url_prefix='/auth')
 app.register_blueprint(analytics_bp, url_prefix='/analytics')
+
+@app.route('/')
+def index():
+    return render_template('home.html')
+
+@app.before_request
+def add_token_to_headers():
+    if 'auth_token' in session:
+        request.headers = dict(request.headers.to_wsgi_list() + [('Authorization', f'Bearer {session["auth_token"]}')])
+
+@app.template_filter()
+def format_datetime(value):
+    return datetime.datetime.fromisoformat(value).strftime("%Y-%m-%dT%H:%M")
 
 @app.errorhandler(InvalidRequestError)
 def handle_invalid_request(error):

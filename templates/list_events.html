@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center">
+    <h2>All Events</h2>
+    <a href="{{ url_for('event_bp.create_event') }}" class="btn btn-success">Create Event</a>
+</div>
+<ul class="list-group mt-3">
+    {% for event in events %}
+    <li class="list-group-item">
+        <h3>{{ event.EventName }}</h3>
+        <p>{{ event.Description }}</p>
+        <p><strong>Date & Time:</strong> {{ event.EventDateTime|format_datetime }}</p>
+        <p><strong>Location:</strong> {{ event.EventLocation }}</p>
+        <p><strong>Category:</strong> {{ event.Category }}</p>
+        <a href="{{ url_for('event_bp.get_event', event_id=event.EventID) }}" class="btn btn-primary">View</a>
+        <a href="{{ url_for('event_bp.delete_event', event_id=event.EventID) }}" class="btn btn-danger">Delete</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

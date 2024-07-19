@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-end mt-4">
+    <a href="{{ url_for('event_bp.list_events') }}" class="btn btn-success">List Events</a>
+</div>
+<h2>{{ event.EventName }}</h2>
+<p><strong>Description:</strong> {{ event.Description }}</p>
+<p><strong>Date & Time:</strong> {{ event.EventDateTime|format_datetime }}</p>
+<p><strong>Location:</strong> {{ event.EventLocation }}</p>
+<p><strong>Category:</strong> {{ event.Category }}</p>
+<p><strong>Participants:</strong> {{ event.Participants }}</p>
+<a href="{{ url_for('event_bp.update_event', event_id=event.EventID) }}" class="btn btn-primary">Edit</a>
+{% endblock %}
